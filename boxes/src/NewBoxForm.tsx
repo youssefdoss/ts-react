@@ -23,14 +23,14 @@ function NewBoxForm({ createBox }: INewBoxFormProps) {
   /** Update form input. */
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
-    setFormData(formData => ({
+    setFormData((formData: IFormData) => ({
       ...formData,
       [name]: value,
     }));
   }
 
   /** Submit form: call function from parent & clear inputs. */
-  function handleSubmit(evt) {
+  function handleSubmit(evt: React.FormEvent): void {
     evt.preventDefault();
     createBox({ ...formData, id: uuid() });
     setFormData({ height: "", width: "", backgroundColor: "" });
